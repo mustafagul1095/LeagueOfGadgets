@@ -7,7 +7,7 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private float cameraXSpeed = 100f;
     [SerializeField] private float cameraZSpeed = 100f;
     [SerializeField] private float screenEdgeTreshold = 0.001f;
-    [SerializeField] private Vector3 currentPosition;
+    
     
     [SerializeField] private Vector2 cameraSpeed = new(100f,100f);
     [SerializeField] private Vector3 minPositionLimit = new(150, 0,30);
@@ -21,38 +21,37 @@ public class CameraMover : MonoBehaviour
 
     private void MoveCameraWithKeyboard()
     {
-        currentPosition = transform.position;
+        var currentPosition = transform.position;
         
-        currentPosition.x += Input.GetAxis("Horizontal") * cameraXSpeed * Time.deltaTime;
-        currentPosition.z += Input.GetAxis("Vertical") * cameraZSpeed * Time.deltaTime;
-
+        currentPosition.x += Input.GetAxis("Horizontal") * cameraSpeed.x * Time.deltaTime;
+        currentPosition.z += Input.GetAxis("Vertical") * cameraSpeed.y * Time.deltaTime;
+        
         currentPosition = CheckPositionLimit(currentPosition);
         transform.position = currentPosition;
     }
     
     private void MoveCameraWithMouse()
     {
-        currentPosition = transform.position;
-        float deltaTime = Time.deltaTime;
+        var currentPosition = transform.position;
         
         float mouseRatioX = Input.mousePosition.x / Screen.width;
         float mouseRatioY = Input.mousePosition.y / Screen.height;
-
+        
         if (mouseRatioX <= screenEdgeTreshold)
         {
-            currentPosition.x -= cameraXSpeed * deltaTime;
+            currentPosition.x -= cameraXSpeed * Time.deltaTime;
         }
         if (mouseRatioX >= 1-screenEdgeTreshold)
         {
-            currentPosition.x += cameraXSpeed * deltaTime;
+            currentPosition.x += cameraXSpeed * Time.deltaTime;
         }
         if (mouseRatioY <= screenEdgeTreshold)
         {
-            currentPosition.z -= cameraZSpeed * deltaTime;
+            currentPosition.z -= cameraZSpeed * Time.deltaTime;
         }
         if (mouseRatioY >= 1-screenEdgeTreshold)
         {
-            currentPosition.z += cameraZSpeed * deltaTime;
+            currentPosition.z += cameraZSpeed * Time.deltaTime;
         }
         
         currentPosition = CheckPositionLimit(currentPosition);
