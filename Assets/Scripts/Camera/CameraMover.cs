@@ -7,11 +7,11 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private float cameraXSpeed = 100f;
     [SerializeField] private float cameraZSpeed = 100f;
     [SerializeField] private float screenEdgeTreshold = 0.001f;
-    [SerializeField] private float minXPos = -200f;
-    [SerializeField] private float maxXPos = 200f;
-    [SerializeField] private float minZPos = -200f;
-    [SerializeField] private float maxZPos = 200f;
-    [SerializeField] private Vector3 currentPos;
+    [SerializeField] private Vector3 currentPosition;
+    
+    [SerializeField] private Vector2 cameraSpeed = new(100f,100f);
+    [SerializeField] private Vector3 minPositionLimit = new(150, 0,30);
+    [SerializeField] private Vector3 maxPositionLimit = new(900, Mathf.Infinity, 920);
     
     void Update()
     {
@@ -21,18 +21,18 @@ public class CameraMover : MonoBehaviour
 
     private void MoveCameraWithKeyboard()
     {
-        currentPos = transform.position;
+        currentPosition = transform.position;
         
-        currentPos.x += Input.GetAxis("Horizontal") * cameraXSpeed * Time.deltaTime;
-        currentPos.z += Input.GetAxis("Vertical") * cameraZSpeed * Time.deltaTime;
+        currentPosition.x += Input.GetAxis("Horizontal") * cameraXSpeed * Time.deltaTime;
+        currentPosition.z += Input.GetAxis("Vertical") * cameraZSpeed * Time.deltaTime;
 
-        currentPos = CheckPositionLimit(currentPos);
-        transform.position = currentPos;
+        currentPosition = CheckPositionLimit(currentPosition);
+        transform.position = currentPosition;
     }
     
     private void MoveCameraWithMouse()
     {
-        currentPos = transform.position;
+        currentPosition = transform.position;
         float deltaTime = Time.deltaTime;
         
         float mouseRatioX = Input.mousePosition.x / Screen.width;
@@ -40,43 +40,29 @@ public class CameraMover : MonoBehaviour
 
         if (mouseRatioX <= screenEdgeTreshold)
         {
-            currentPos.x -= cameraXSpeed * deltaTime;
+            currentPosition.x -= cameraXSpeed * deltaTime;
         }
         if (mouseRatioX >= 1-screenEdgeTreshold)
         {
-            currentPos.x += cameraXSpeed * deltaTime;
+            currentPosition.x += cameraXSpeed * deltaTime;
         }
         if (mouseRatioY <= screenEdgeTreshold)
         {
-            currentPos.z -= cameraZSpeed * deltaTime;
+            currentPosition.z -= cameraZSpeed * deltaTime;
         }
         if (mouseRatioY >= 1-screenEdgeTreshold)
         {
-            currentPos.z += cameraZSpeed * deltaTime;
+            currentPosition.z += cameraZSpeed * deltaTime;
         }
         
-        currentPos = CheckPositionLimit(currentPos);
-        transform.position = currentPos;
+        currentPosition = CheckPositionLimit(currentPosition);
+        transform.position = currentPosition;
     }
 
     private Vector3 CheckPositionLimit(Vector3 currentPos)
     {
-        if (currentPos.x < minXPos)
-        {
-            currentPos.x = minXPos;
-        }
-        if (currentPos.x > maxXPos)
-        {
-            currentPos.x = maxXPos;
-        }
-        if (currentPos.z < minZPos)
-        {
-            currentPos.z = minZPos;
-        }
-        if (currentPos.z > maxZPos)
-        {
-            currentPos.z = maxZPos;
-        }
+        currentPos = Vector3.Max(currentPos,minPositionLimit);
+        currentPos = Vector3.Min(currentPos,maxPositionLimit);
         return currentPos;
     }
 }

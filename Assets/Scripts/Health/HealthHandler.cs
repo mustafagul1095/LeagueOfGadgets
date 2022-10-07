@@ -32,7 +32,6 @@ public class HealthHandler : MonoBehaviour
         {
             if (transform.parent.gameObject != null)
             {
-                Debug.Log("DestroyParent");
                 Destroy(transform.parent.gameObject);
             }
             Destroy(gameObject);

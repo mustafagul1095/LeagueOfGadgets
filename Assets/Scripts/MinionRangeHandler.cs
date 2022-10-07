@@ -24,6 +24,14 @@ public class MinionRangeHandler : MonoBehaviour
         transform.position = _body.transform.position;
     }
 
+    private void Update()
+    {
+        if (!TargetIsAcquired)
+        {
+            ChangeTarget();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var otherSideHandler = other.GetComponent<SideHandler>();
@@ -41,8 +49,10 @@ public class MinionRangeHandler : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         var otherSideHandler = other.GetComponent<SideHandler>();
-        if (otherSideHandler == null) 
+        if (otherSideHandler == null)
+        {
             return;
+        }
         if (!otherSideHandler.Equals(_sideHandler))
         {
             if (_closestEnemy == null ||
