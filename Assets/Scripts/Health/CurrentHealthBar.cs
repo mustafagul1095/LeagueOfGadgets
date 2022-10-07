@@ -16,16 +16,13 @@ public class CurrentHealthBar : MonoBehaviour
         _transform = transform;
         _healthHandler = GetComponentInParent<HealthHandler>();
         _localScale = _transform.localScale;
-
     }
 
     private void Update()
     {
         _transform.localScale = new Vector3(_healthHandler.Health * healthBarLengthFactor, _localScale.y, _localScale.z);
         var localPosition = _transform.localPosition;
-        float localPositionX = localPosition.x;
-        localPositionX = -((_healthHandler.MaxHealth - _healthHandler.Health) * healthBarLengthFactor)/2;
-        localPosition = new Vector3(localPositionX, localPosition.y, localPosition.z);
+        localPosition.x = -((_healthHandler.MaxHealth - _healthHandler.Health) * healthBarLengthFactor)/2;
         _transform.localPosition = localPosition;
     }
 }

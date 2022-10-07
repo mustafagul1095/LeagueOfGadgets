@@ -9,7 +9,6 @@ public class ESkillBullet : MonoBehaviour
     [SerializeField] private GameObject damageAreaPrefab;
     
     private Vector3 _target;
-    
     private int _validEnemyLayer;
 
     public void Init(Vector3 targetPos, int layerNum)
