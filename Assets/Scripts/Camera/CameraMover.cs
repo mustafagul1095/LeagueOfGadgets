@@ -9,9 +9,9 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private float screenEdgeTreshold = 0.001f;
     [SerializeField] private Vector3 currentPosition;
     
-    [SerializeField] private Vector2 cameraSpeed = new(100f,100f);
-    [SerializeField] private Vector3 minPositionLimit = new(150, 0,30);
-    [SerializeField] private Vector3 maxPositionLimit = new(900, Mathf.Infinity, 920);
+    [SerializeField] private Vector2 cameraSpeed = new Vector2(100f,100f);
+    [SerializeField] private Vector3 minPositionLimit = new Vector3(150, 0,30);
+    [SerializeField] private Vector3 maxPositionLimit = new Vector3(900, Mathf.Infinity, 920);
     
     void Update()
     {

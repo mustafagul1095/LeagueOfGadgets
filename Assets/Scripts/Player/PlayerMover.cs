@@ -23,7 +23,7 @@ public class PlayerMover : MonoBehaviour
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _playerAttackRange = GetComponent<PlayerAttackRange>();
         _playerAutoAttack = GetComponent<PlayerAutoAttack>();
         _playerWSkill = GetComponent<PlayerWSkill>();
