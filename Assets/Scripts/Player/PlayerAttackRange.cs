@@ -15,6 +15,7 @@ public class PlayerAttackRange : MonoBehaviour
 
     private void Awake()
     {
+        mouseHandler = FindObjectOfType<MouseHandler>();
         mouseHandler.OnMouseRightClick += OnMouseRightClick;
     }
 
