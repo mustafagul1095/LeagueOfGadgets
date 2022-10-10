@@ -11,6 +11,7 @@ public class HudHealthText : MonoBehaviour
     private void Start()
     {
         _text = GetComponent<TextMeshProUGUI>();
+        healthHandler = FindObjectOfType<HealthHandler>();
     }
 
     private void Update()

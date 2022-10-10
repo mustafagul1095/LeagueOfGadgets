@@ -15,6 +15,11 @@ public class HudHealthBar : MonoBehaviour
         _image = GetComponent<Image>();
     }
 
+    private void Start()
+    {
+        healthHandler = FindObjectOfType<HealthHandler>();
+    }
+
     private void Update()
     {
         _image.fillAmount = healthHandler.Health / healthHandler.MaxHealth;

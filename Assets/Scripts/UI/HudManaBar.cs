@@ -15,6 +15,11 @@ public class HudManaBar : MonoBehaviour
         _image = GetComponent<Image>();
     }
 
+    private void Start()
+    {
+        manaHandler = FindObjectOfType<ManaHandler>();
+    }
+    
     private void Update()
     {
         _image.fillAmount = manaHandler.Mana / manaHandler.MaxMana;

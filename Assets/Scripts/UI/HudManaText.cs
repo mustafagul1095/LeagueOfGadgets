@@ -11,6 +11,7 @@ public class HudManaText : MonoBehaviour
     private void Start()
     {
         _text = GetComponent<TextMeshProUGUI>();
+        manaHandler = FindObjectOfType<ManaHandler>();
     }
 
     private void Update()
