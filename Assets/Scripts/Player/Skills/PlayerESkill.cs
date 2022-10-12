@@ -19,6 +19,7 @@ public class PlayerESkill : MonoBehaviour
     private void Start()
     {
         _manaHandler = GetComponent<ManaHandler>();
+        mouseHandler = FindObjectOfType<MouseHandler>();
     }
 
     public void CastESkill()

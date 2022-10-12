@@ -7,15 +7,22 @@ public class HudHealthText : MonoBehaviour
 {
     [SerializeField] private HealthHandler healthHandler;
     private TextMeshProUGUI _text;
-
+    
     private void Start()
     {
         _text = GetComponent<TextMeshProUGUI>();
-        healthHandler = FindObjectOfType<HealthHandler>();
     }
 
+    private void OnPlayerSelected()
+    {
+        healthHandler = FindObjectOfType<HealthHandler>();
+    }
+    
     private void Update()
     {
-        _text.text = healthHandler.Health + " / " + healthHandler.MaxHealth;
+        if (healthHandler != null)
+        {
+            _text.text = healthHandler.Health + " / " + healthHandler.MaxHealth;   
+        }
     }
 }

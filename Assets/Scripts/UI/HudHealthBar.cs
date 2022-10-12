@@ -15,13 +15,13 @@ public class HudHealthBar : MonoBehaviour
         _image = GetComponent<Image>();
     }
 
-    private void Start()
+    private void OnPlayerSelected()
     {
         healthHandler = FindObjectOfType<HealthHandler>();
     }
 
     private void Update()
     {
-        _image.fillAmount = healthHandler.Health / healthHandler.MaxHealth;
+        if (healthHandler != null) _image.fillAmount = healthHandler.Health / healthHandler.MaxHealth;
     }
 }

@@ -78,7 +78,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4209753464387112397}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.48
   m_Height: 9.08
@@ -98,8 +98,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!114 &302194107651575478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff52e0b74523c4d4caa582e83b56daf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 51.67
+  movementSpeed: 2500
   stopRange: 2
   mouseHandler: {fileID: 0}
 --- !u!114 &351140739376907990

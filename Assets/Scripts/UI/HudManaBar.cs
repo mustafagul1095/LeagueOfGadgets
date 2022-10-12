@@ -15,13 +15,14 @@ public class HudManaBar : MonoBehaviour
         _image = GetComponent<Image>();
     }
 
-    private void Start()
+    private void OnPlayerSelected()
     {
         manaHandler = FindObjectOfType<ManaHandler>();
+        Debug.Log("PlayerSelected--Mana Bar");
     }
     
     private void Update()
     {
-        _image.fillAmount = manaHandler.Mana / manaHandler.MaxMana;
+        if (manaHandler != null) _image.fillAmount = manaHandler.Mana / manaHandler.MaxMana;
     }
 }

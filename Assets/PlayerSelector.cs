@@ -9,39 +9,40 @@ public class PlayerSelector : MonoBehaviour
     [SerializeField] private GameObject flamerPrefab;
     [SerializeField] private GameObject zombiePrefab;
     [SerializeField] private GameObject vampirePrefab;
-
     [SerializeField] private Transform parentObj;
-
     [SerializeField] private Vector3 initPosition;
-    
+    [SerializeField] private GameObject playerSelection;
+
 
     public void LoadTheBoss()
     {
-        Instantiate(theBossPrefab, initPosition, Quaternion.identity, parentObj);
-        Destroy(gameObject);
+        LoadPlayer(theBossPrefab);
     }
-
+    
     public void LoadNinjaBoy()
     {
-        Instantiate(ninjaBoyPrefab, initPosition, Quaternion.identity, parentObj);
-        Destroy(gameObject);
+        LoadPlayer(ninjaBoyPrefab);
     }
     
     public void LoadFlamer()
     {
-        Instantiate(flamerPrefab, initPosition, Quaternion.identity, parentObj);
-        Destroy(gameObject);
+        LoadPlayer(flamerPrefab);
     }
     
     public void LoadZombie()
     {
-        Instantiate(zombiePrefab, initPosition, Quaternion.identity, parentObj);
-        Destroy(gameObject);
+        LoadPlayer(zombiePrefab);
     }
     
     public void LoadVampire()
     {
-        Instantiate(vampirePrefab, initPosition, Quaternion.identity, parentObj);
-        Destroy(gameObject);
+        LoadPlayer(vampirePrefab);
+    }
+    
+    private void LoadPlayer(GameObject prefab)
+    {
+        Instantiate(prefab, initPosition, Quaternion.identity, parentObj);
+        BroadcastMessage("OnPlayerSelected", SendMessageOptions.DontRequireReceiver);
+        Destroy(playerSelection);
     }
 }

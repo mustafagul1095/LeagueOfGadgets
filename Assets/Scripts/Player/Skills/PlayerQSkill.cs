@@ -17,6 +17,7 @@ public class PlayerQSkill : MonoBehaviour
     private void Start()
     {
         _manaHandler = GetComponent<ManaHandler>();
+        mouseHandler = FindObjectOfType<MouseHandler>();
     }
     
     

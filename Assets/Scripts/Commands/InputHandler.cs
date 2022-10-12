@@ -8,8 +8,9 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private Command eCommand;
     [SerializeField] private Command rCommand;
 
-    private void Start()
+    private void OnPlayerSelected()
     {
+        Debug.Log("InputHandler");
         qCommand = FindObjectOfType<QSkillCommand>();
         wCommand = FindObjectOfType<WSkillCommand>();
         eCommand = FindObjectOfType<ESkillCommand>();

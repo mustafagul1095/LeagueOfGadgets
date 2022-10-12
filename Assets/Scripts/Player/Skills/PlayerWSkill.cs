@@ -20,6 +20,7 @@ public class PlayerWSkill : MonoBehaviour
     private void Start()
     {
         _manaHandler = GetComponent<ManaHandler>();
+        mouseHandler = FindObjectOfType<MouseHandler>();
     }
     
     private IEnumerator WShoot()
